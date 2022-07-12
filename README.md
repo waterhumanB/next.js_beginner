@@ -31,3 +31,11 @@ pages 파일에 react.js or ts component를 export 하고 있는 파일을 pages
 만약 파일이 없는 url를 입력하면 404 페이지가 나온다.
 (리액트에서는 404페이지를 만들어야 하지만, next.js는 이미 만들어져 있다.)
 ```
+
+## Static Pre Rendering
+
+```
+react 렌더링 방식은 client-side render 방식으로 브라우저가 HTML을 가져올 때 비어있는 id가 root인 div태그를 가져와서 모든 js에 요청을 해, js와 react를 실행한 후 UI가 보여진다. 브라우저는 JS가 있을 때 만 UI를 볼 수 있다.
+
+
+```
