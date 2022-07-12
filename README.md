@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Beginner 🏃‍♂️
 
-## Getting Started
+## Next.js 학습의 목표 🚀
 
-First, run the development server:
+1. SSR 프레임워크인 Next.js 동작 방법
+2. Next.js를 쓰는 이유와 장단점 파악
+3. Next.js를 이용한 SEO 최적화 방법
+4. 그 밖에 알았던, 몰랐던 내용들 학습
 
-```bash
-npm run dev
-# or
-yarn dev
+# Next.js에 대한 기초 학습 📚
+
+설치 방법 : npx create-next-app@latest --typescript
+
+실행 방법 : npm run dev
+
+## 프레임워크와 라이브러리의 차이점
+
+```
+라이브러리 : 개발자로서 내가 사용하는 것들, 내 마음대로 할 수 있다. 어떠한 라이브러리를 불러와서 사용해서 무엇인가 한다.
+
+프레임워크 : 나의 코드를 불러오는 것, 규칙을 따라야 작동한다. 규칙을 지키고 코드를 작성하면 내 코드를 불러와 모든 걸 동작하게 만들어 준다.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Next.js page routing 방법
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+pages 파일에 react.js or ts component를 export 하고 있는 파일을 pages 폴더 안에 두면 파일의 이름을 가져다가 url 이름으로 쓴다.
+예외로 index.js만 이름을 url로 쓰지 않고 "/" 인 HomePage로 보여준다.
+(리액트로 만들면, router 직접 설정을 해줘야 하지만 next.js를 알아서 해준다.)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+만약 파일이 없는 url를 입력하면 404 페이지가 나온다.
+(리액트에서는 404페이지를 만들어야 하지만, next.js는 이미 만들어져 있다.)
+```
