@@ -6,12 +6,12 @@ export default function Navbar() {
   return (
     <nav>
       <Link href="/">
-        <a style={{ color: router.pathname === '/' ? 'red' : 'blue' }}>home</a>
+        <a style={{ color: router.pathname === '/' ? 'red' : 'blue' }}>Home</a>
       </Link>
       <br />
-      <Link href="/about">
+      <Link href="/About">
         <a style={{ color: router.pathname === '/about' ? 'red' : 'blue' }}>
-          about
+          About
         </a>
       </Link>
     </nav>
