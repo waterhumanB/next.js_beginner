@@ -1,14 +1,14 @@
-import Head from 'next/head'
-import { ReactNode } from 'react'
+import Head from "next/head";
+import React from "react";
 
-interface Props {
-  title?: ReactNode | undefined
+interface ITitleProps {
+  title: string;
 }
 
-export default function Seo({ title }: Props) {
+export default function Seo({ title }: ITitleProps) {
   return (
     <Head>
-      <title>{title} | Next Moives</title>
+      <title>{title} | Next Movies</title>
     </Head>
-  )
+  );
 }

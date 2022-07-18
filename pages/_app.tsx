@@ -1,10 +1,15 @@
-import type { AppProps } from 'next/app'
-import Layout from './Layout'
+import { AppProps } from 'next/app'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import Layout from '../components/Layout'
+import '../styles/globals.scss'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
+  const client = new QueryClient()
   return (
     <Layout>
-      <Component {...pageProps} />
+      <QueryClientProvider client={client}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </Layout>
   )
 }

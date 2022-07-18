@@ -59,4 +59,68 @@ export default function App({ Component, pageProps }: AppProps) {
 
 템플릿을 커스텀할때는 \_app 파일을 사용한다. 위에 코드를 보면, pages에 있는 컴포넌트들을 보여줄 수 있고, 거기에 global style 과, header, footer, sideBar 같은 section을 만들 수 있을 거 같다. 그러면 script 태그를 추가해서 SEO 최적화 할 수 있다.
 
-##
+## Redirect && Rewrite
+
+next.config.js에서 redirect를 사용할 수 있는데, 어떠한 url에서 다른 url로 이동할 때 편리한 기능이다. plain react에서 사용할 때는 어렵지 않겠지만, next.js는 기본으로 제공되는 기능이다.
+
+```typescript
+const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/현재url/:path*', //path를 쓰게 되면 뒤에 있는 url들은 바꾸지 않고 바뀐 url 부분만 바뀐다. 그리고 아예 다른 url로 이동 가능하다.
+        destination: '/보내고싶은url/:path*',
+        permanent: false, // 영구적인지 판단
+      },
+      // 새로운 redirect를 입력하면 객체를 추가해주면 된다.
+    ]
+  },
+}
+```
+
+그리고 rewrites 기능은 api_key 값을 숨길 때 편리하다.
+이름 그대로 url을 덮어 씌워준다. 그러면 검사페이지에서 network에서 보면 apiKey값을 확인 할 수 없게 된다. 사용방법은 redirects와 똑같다.
+
+```typescript
+async rewrites() {
+    return [
+      {
+        source: '/api/moives', // api 요청보낼 url 입력
+        destination: `https://api.themovieldb.org/3/movie/popular${KEY}`, // key값이 들어있는 api오쳥 url 입력
+      },
+      // 위와 같이 api를 추가 해주면 된다.
+    ]
+  },
+```
+
+위에 코드 처럼 사용하면 되고, 좀 더 숨기고 싶으면 plain react에서 사용했던 env. 파일을 이용해서 api_key를 숨기면 더 확실하게 된다.
+
+## Server Side Rendering
+
+getServerSideProps라는 함수를 만들고 그안에 api 통신으로 받은 data 같은 것들을 넣을 수 있고, 그것을 props로 받을 수 있다.
+
+```typescript
+export async function getServerSideProps() {
+  // 함수이름 무조건
+  const { results } = await (
+    await fetch(`http://localhost:3000/api/movies`)
+  ).json() // url은 front url을 입력해줘야 한다. 이것은 서버에서 작동하기 때문
+  return {
+    props: {
+      results,
+    },
+  }
+} // 이런식으로 어떠한 것이라도 사용하면 될 거 같다.
+```
+
+흔히 plain react에서는 fetch된 data들을 받기 전에 suspense를 사용하는데, next.js에서는 데이터를 받기전 server에서 html을 넘겨주지 않으니, loading 화면이 필요 없을 거 같다. 요약하면 백엔드에 미리 html을 받아와서 프론트로 바로 보여준다고 생각하면 될거 같다. 단점은 api가 느리면 유저에게 느린화면을 보여줄 수 있다.
+
+## Dynamic Routes
+
+pages 폴더 안에 [] 로 감싸주면 params나 변수로 url을 보낼 수 있다.
+
+## Catch ALL
+
+위에 []로 params나 변수로 url를 보낼 수 있었다.
+
+그리고 스프레드 문법을 사용하면, 배열 전체로 보낼 수 있다.
